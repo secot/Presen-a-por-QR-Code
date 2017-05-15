@@ -11,9 +11,15 @@ if (isset($_GET['id_pessoa']) && isset($_GET['id_palestra']) && isset($_GET['pre
     require_once __DIR__ . '/db_connect.php';
 
     $db = new Db();
-	  $db_con = $db -> connect();
+	  $db_con = $db->connect();
 
-    $result = mysqli_query($db_con, "UPDATE interesses SET presenca = '$presente' WHERE id_pessoa = $id_pessoa AND id_palestra = $id_palestra");
+    $inscrito = mysqli_query($db_con, "SELECT presenca from interesses where id_pessoa = $id_pessoa and id_palestra = $id_palestra");
+    $inscrito_count = $inscrito->num_rows;
+
+    if ($inscrito_count > 0)
+      $result = mysqli_query($db_con, "UPDATE interesses SET presenca = '$presente' WHERE id_pessoa = $id_pessoa AND id_palestra = $id_palestra");
+    else
+      $result = mysqli_query($db_con, "INSERT INTO `interesses`(`id_pessoa`, `id_palestra`, `presenca`, `created_at`, `updated_at`) values ('". $id_pessoa . "', '". $id_palestra . "', '". $presente . "', (select now()), (select now()) )");
 
 	if ($db_con -> affected_rows == 0 ) {
 		$response["success"] = 0;
