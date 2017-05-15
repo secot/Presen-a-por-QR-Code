@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.secot.thiagow.secot" >
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <application tools:replace="android:label, android:icon"
+        android:allowBackup="true"
+        android:icon="@drawable/icon"
+        android:label="SeCoT"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name="com.secot.thiagow.secot.MainActivity"
+            android:label="SeCoT"
+            android:configChanges="orientation|screenSize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.secot.thiagow.secot.PalestraActivity"
+            android:label="Palestra"
+            android:parentActivityName="com.secot.thiagow.secot.MainActivity"
+            android:configChanges="orientation|screenSize">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.secot.thiagow.secot.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.secot.thiagow.secot.SettingsActivity"
+            android:label="Preferencias"
+            android:parentActivityName="com.secot.thiagow.secot.MainActivity"
+            android:configChanges="orientation|screenSize">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.secot.thiagow.secot.MainActivity" />
+        </activity>
+    </application>
+
+</manifest>
